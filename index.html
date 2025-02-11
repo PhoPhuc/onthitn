@@ -1,207 +1,228 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trung tâm Học tập Thông minh</title>
-    <style>
-        /* Reset CSS */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang Ôn Thi</title>
+  <style>
+    /* Reset CSS */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-            padding: 30px;
-        }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      padding: 30px;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 40px;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            animation: fadeIn 1s ease-in;
-        }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 40px;
+      font-size: 2.5em;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
 
-        /* Danh mục */
-        .categories {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
+    /* Danh mục */
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
 
-        .category-btn {
-            padding: 12px 25px;
-            border: none;
-            background: #3498db;
-            color: white;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+    .category-btn {
+      padding: 12px 25px;
+      border: none;
+      background: #3498db;
+      color: white;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
 
-        .category-btn:hover {
-            transform: translateY(-3px);
-            background: #2980b9;
-            box-shadow: 0 6px 8px rgba(0,0,0,0.2);
-        }
+    .category-btn:hover,
+    .category-btn.active {
+      transform: translateY(-3px);
+      background: #2980b9;
+      box-shadow: 0 6px 8px rgba(0,0,0,0.2);
+    }
 
-        /* Grid chứa các link */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 20px;
-        }
+    /* Grid chứa các card */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 20px;
+    }
 
-        /* Card chứa link */
-        .card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
+    /* Card */
+    .card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
 
-        .card:hover {
-            transform: translateY(-10px);
-        }
+    .card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
 
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 3px solid #3498db;
-        }
+    /* Hiệu ứng phóng to hình ảnh khi di chuột */
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    
+    .card:hover img {
+      transform: scale(1.1);
+    }
 
-        .card-content {
-            padding: 20px;
-        }
+    .card-content {
+      padding: 20px;
+    }
 
-        .card h3 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 1.2em;
-        }
+    .card h3 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+      font-size: 1.2em;
+    }
 
-        .card p {
-            color: #7f8c8d;
-            font-size: 0.9em;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
+    .card p {
+      color: #7f8c8d;
+      font-size: 0.9em;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
 
-        .card a {
-            display: inline-block;
-            padding: 8px 20px;
-            background: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 20px;
-            transition: background 0.3s ease;
-        }
+    .card a {
+      display: inline-block;
+      padding: 8px 20px;
+      background: #3498db;
+      color: white;
+      text-decoration: none;
+      border-radius: 20px;
+      transition: background 0.3s ease;
+    }
 
-        .card a:hover {
-            background: #2980b9;
-        }
+    .card a:hover {
+      background: #2980b9;
+    }
 
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    /* Màu sắc đặc trưng cho từng môn học */
+    .card[data-category="vat-li"] img {
+      border-bottom: 3px solid #8e44ad;  /* Tím đậm */
+    }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
-        }
-    </style>
+    .card[data-category="hoa-hoc"] img {
+      border-bottom: 3px solid #e74c3c;  /* Đỏ */
+    }
+
+    .card[data-category="sinh-hoc"] img {
+      border-bottom: 3px solid #27ae60;  /* Xanh lá */
+    }
+
+    .card[data-category="tin-hoc"] img {
+      border-bottom: 3px solid #f1c40f;  /* Vàng */
+    }
+
+    @media (max-width: 768px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      
+      h1 {
+        font-size: 2em;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>📚 Trung tâm Tài nguyên Học tập</h1>
-        
-        <div class="categories">
-            <button class="category-btn" data-category="all">Tất cả</button>
-            <button class="category-btn" data-category="khoa-hoc">Khóa học Online</button>
-            <button class="category-btn" data-category="ngoai-ngu">Ngoại ngữ</button>
-            <button class="category-btn" data-category="ky-nang">Kỹ năng</button>
-        </div>
-
-        <div class="grid">
-            <!-- Mỗi card -->
-            <div class="card" data-category="khoa-hoc">
-                <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80" alt="Khóa học">
-                <div class="card-content">
-                    <h3>Khóa học Online</h3>
-                    <p>Các nền tảng học tập trực tuyến hàng đầu</p>
-                    <a href="https://www.coursera.org" target="_blank">Truy cập</a>
-                </div>
-            </div>
-
-            <div class="card" data-category="ngoai-ngu">
-                <img src="https://images.unsplash.com/photo-1520962922320-2038eebab146?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Ngoại ngữ">
-                <div class="card-content">
-                    <h3>Học Ngoại ngữ</h3>
-                    <p>Phát triển kỹ năng ngôn ngữ của bạn</p>
-                    <a href="https://www.duolingo.com" target="_blank">Truy cập</a>
-                </div>
-            </div>
-
-            <div class="card" data-category="ky-nang">
-                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1306&q=80" alt="Kỹ năng">
-                <div class="card-content">
-                    <h3>Phát triển Kỹ năng</h3>
-                    <p>Cải thiện kỹ năng cá nhân và nghề nghiệp</p>
-                    <a href="https://www.skillshare.com" target="_blank">Truy cập</a>
-                </div>
-            </div>
-        </div>
+  <div class="container">
+    <h1>📚 Trang Ôn Thi</h1>
+    
+    <div class="categories">
+      <button class="category-btn active" data-category="all">Tất cả</button>
+      <button class="category-btn" data-category="vat-li">Vật lí</button>
+      <button class="category-btn" data-category="hoa-hoc">Hoá học</button>
+      <button class="category-btn" data-category="sinh-hoc">Sinh học</button>
+      <button class="category-btn" data-category="tin-hoc">Tin học</button>
     </div>
 
-    <script>
-        // Thêm chức năng filter cho danh mục
-        const filterButtons = document.querySelectorAll('.category-btn');
-        const cards = document.querySelectorAll('.card');
+    <div class="grid">
+      <!-- Card Ôn thi Vật lí -->
+      <div class="card" data-category="vat-li">
+        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Vật lí">
+        <div class="card-content">
+          <h3>Ôn thi Vật lí</h3>
+          <p>Ôn tập kiến thức Vật lí cho kỳ thi sắp tới.</p>
+          <a href="https://example.com/onti/vat-li" target="_blank">Truy cập</a>
+        </div>
+      </div>
 
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const category = button.dataset.category;
-                
-                // Xóa active tất cả button
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                
-                // Lọc card
-                cards.forEach(card => {
-                    if(category === 'all' || card.dataset.category === category) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
+      <!-- Card Ôn thi Hoá học -->
+      <div class="card" data-category="hoa-hoc">
+        <img src="https://images.unsplash.com/photo-1568572933382-74d440642117?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Hoá học">
+        <div class="card-content">
+          <h3>Ôn thi Hoá học</h3>
+          <p>Ôn tập kiến thức Hoá học và thực hành.</p>
+          <a href="https://example.com/onti/hoa-hoc" target="_blank">Truy cập</a>
+        </div>
+      </div>
+
+      <!-- Card Ôn thi Sinh học -->
+      <div class="card" data-category="sinh-hoc">
+        <img src="https://images.unsplash.com/photo-1554475901-4538ddfbccc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sinh học">
+        <div class="card-content">
+          <h3>Ôn thi Sinh học</h3>
+          <p>Ôn tập các bài học Sinh học cho kỳ thi.</p>
+          <a href="https://example.com/onti/sinh-hoc" target="_blank">Truy cập</a>
+        </div>
+      </div>
+
+      <!-- Card Ôn thi Tin học -->
+      <div class="card" data-category="tin-hoc">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Tin học">
+        <div class="card-content">
+          <h3>Ôn thi Tin học</h3>
+          <p>Ôn tập kiến thức Tin học và lập trình cơ bản.</p>
+          <a href="https://example.com/onti/tin-hoc" target="_blank">Truy cập</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Lọc card theo danh mục
+    const filterButtons = document.querySelectorAll('.category-btn');
+    const cards = document.querySelectorAll('.card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const category = button.dataset.category;
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        cards.forEach(card => {
+          card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
         });
-    </script>
+      });
+    });
+  </script>
 </body>
 </html>
