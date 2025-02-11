@@ -11,19 +11,38 @@
       padding: 0;
       box-sizing: border-box;
     }
-
+    /* Body với nền gradient chuyển động và texture overlay */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      background-size: 200% 200%;
+      animation: gradientAnimation 15s ease infinite;
       min-height: 100vh;
       padding: 30px;
+      position: relative;
     }
-
+    /* Texture nền mờ, giữ tính đơn giản */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://www.transparenttextures.com/patterns/cubes.png');
+      opacity: 0.1;
+      pointer-events: none;
+      z-index: -1;
+    }
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
     .container {
       max-width: 1200px;
       margin: 0 auto;
     }
-
     h1 {
       text-align: center;
       color: #2c3e50;
@@ -31,8 +50,6 @@
       font-size: 2.5em;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
-
-    /* Danh mục */
     .categories {
       display: flex;
       justify-content: center;
@@ -40,7 +57,6 @@
       margin-bottom: 40px;
       flex-wrap: wrap;
     }
-
     .category-btn {
       padding: 12px 25px;
       border: none;
@@ -51,23 +67,25 @@
       transition: all 0.3s ease;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-
-    .category-btn:hover,
-    .category-btn.active {
+    /* Hiệu ứng hover cho nút phân loại */
+    .category-btn:hover {
       transform: translateY(-3px);
       background: #2980b9;
       box-shadow: 0 6px 8px rgba(0,0,0,0.2);
     }
-
-    /* Grid chứa các card */
+    /* Khi nút phân loại được chọn: thêm viền và đổi màu nền thành xanh đậm */
+    .category-btn.active {
+      transform: translateY(-3px);
+      background: #0d47a1;
+      border: 2px solid #0d47a1;
+      box-shadow: 0 6px 8px rgba(0,0,0,0.2);
+    }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 30px;
       padding: 20px;
     }
-
-    /* Card */
     .card {
       background: white;
       border-radius: 15px;
@@ -76,41 +94,33 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
     }
-
     .card:hover {
       transform: translateY(-10px) scale(1.03);
       box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
-
-    /* Hiệu ứng phóng to hình ảnh khi di chuột */
     .card img {
       width: 100%;
       height: 200px;
       object-fit: cover;
       transition: transform 0.3s ease;
     }
-    
     .card:hover img {
       transform: scale(1.1);
     }
-
     .card-content {
       padding: 20px;
     }
-
     .card h3 {
       color: #2c3e50;
       margin-bottom: 10px;
       font-size: 1.2em;
     }
-
     .card p {
       color: #7f8c8d;
       font-size: 0.9em;
       line-height: 1.5;
       margin-bottom: 15px;
     }
-
     .card a {
       display: inline-block;
       padding: 8px 20px;
@@ -120,54 +130,66 @@
       border-radius: 20px;
       transition: background 0.3s ease;
     }
-
     .card a:hover {
       background: #2980b9;
     }
-
     /* Màu sắc đặc trưng cho từng môn học */
     .card[data-category="vat-li"] img {
-      border-bottom: 3px solid #8e44ad;  /* Tím đậm */
+      border-bottom: 3px solid #8e44ad;
     }
-
     .card[data-category="hoa-hoc"] img {
-      border-bottom: 3px solid #e74c3c;  /* Đỏ */
+      border-bottom: 3px solid #e74c3c;
     }
-
     .card[data-category="sinh-hoc"] img {
-      border-bottom: 3px solid #27ae60;  /* Xanh lá */
+      border-bottom: 3px solid #27ae60;
     }
-
     .card[data-category="tin-hoc"] img {
-      border-bottom: 3px solid #f1c40f;  /* Vàng */
+      border-bottom: 3px solid #f1c40f;
     }
-
     @media (max-width: 768px) {
       .grid {
         grid-template-columns: 1fr;
       }
-      
       h1 {
         font-size: 2em;
+      }
+    }
+    /* Hiệu ứng khi mở trang và lướt web */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    .animate-on-scroll.animate {
+      animation: popIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    }
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      60% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>📚 Trang Ôn Thi</h1>
-    
-    <div class="categories">
+    <h1 class="animate-on-scroll">📚 Trang Ôn Thi</h1>
+    <div class="categories animate-on-scroll">
       <button class="category-btn active" data-category="all">Tất cả</button>
       <button class="category-btn" data-category="vat-li">Vật lí</button>
       <button class="category-btn" data-category="hoa-hoc">Hoá học</button>
       <button class="category-btn" data-category="sinh-hoc">Sinh học</button>
       <button class="category-btn" data-category="tin-hoc">Tin học</button>
     </div>
-
     <div class="grid">
-      <!-- Card Ôn thi Vật lí -->
-      <div class="card" data-category="vat-li">
+      <div class="card animate-on-scroll" data-category="vat-li">
         <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Vật lí">
         <div class="card-content">
           <h3>Ôn thi Vật lí</h3>
@@ -175,9 +197,7 @@
           <a href="https://example.com/onti/vat-li" target="_blank">Truy cập</a>
         </div>
       </div>
-
-      <!-- Card Ôn thi Hoá học -->
-      <div class="card" data-category="hoa-hoc">
+      <div class="card animate-on-scroll" data-category="hoa-hoc">
         <img src="https://images.unsplash.com/photo-1568572933382-74d440642117?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Hoá học">
         <div class="card-content">
           <h3>Ôn thi Hoá học</h3>
@@ -185,9 +205,7 @@
           <a href="https://example.com/onti/hoa-hoc" target="_blank">Truy cập</a>
         </div>
       </div>
-
-      <!-- Card Ôn thi Sinh học -->
-      <div class="card" data-category="sinh-hoc">
+      <div class="card animate-on-scroll" data-category="sinh-hoc">
         <img src="https://images.unsplash.com/photo-1554475901-4538ddfbccc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sinh học">
         <div class="card-content">
           <h3>Ôn thi Sinh học</h3>
@@ -195,9 +213,7 @@
           <a href="https://example.com/onti/sinh-hoc" target="_blank">Truy cập</a>
         </div>
       </div>
-
-      <!-- Card Ôn thi Tin học -->
-      <div class="card" data-category="tin-hoc">
+      <div class="card animate-on-scroll" data-category="tin-hoc">
         <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Tin học">
         <div class="card-content">
           <h3>Ôn thi Tin học</h3>
@@ -207,12 +223,11 @@
       </div>
     </div>
   </div>
-
+  
   <script>
     // Lọc card theo danh mục
     const filterButtons = document.querySelectorAll('.category-btn');
     const cards = document.querySelectorAll('.card');
-
     filterButtons.forEach(button => {
       button.addEventListener('click', () => {
         const category = button.dataset.category;
@@ -221,6 +236,21 @@
         cards.forEach(card => {
           card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
         });
+      });
+    });
+    // IntersectionObserver để kích hoạt hiệu ứng khi phần tử xuất hiện
+    document.addEventListener('DOMContentLoaded', function() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      
+      document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
       });
     });
   </script>
