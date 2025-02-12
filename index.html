@@ -11,7 +11,7 @@
       padding: 0;
       box-sizing: border-box;
     }
-    /* Body với nền gradient chuyển động và texture overlay */
+    /* Body với nền gradient chuyển động */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
@@ -19,20 +19,6 @@
       animation: gradientAnimation 15s ease infinite;
       min-height: 100vh;
       padding: 30px;
-      position: relative;
-    }
-    /* Texture nền mờ, giữ tính đơn giản */
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('https://www.transparenttextures.com/patterns/cubes.png');
-      opacity: 0.1;
-      pointer-events: none;
-      z-index: -1;
     }
     @keyframes gradientAnimation {
       0% { background-position: 0% 50%; }
@@ -146,6 +132,10 @@
     .card[data-category="tin-hoc"] img {
       border-bottom: 3px solid #f1c40f;
     }
+    /* Màu sắc cho môn Lịch sử */
+    .card[data-category="lich-su"] img {
+      border-bottom: 3px solid #d35400;
+    }
     @media (max-width: 768px) {
       .grid {
         grid-template-columns: 1fr;
@@ -187,10 +177,11 @@
       <button class="category-btn" data-category="hoa-hoc">Hoá học</button>
       <button class="category-btn" data-category="sinh-hoc">Sinh học</button>
       <button class="category-btn" data-category="tin-hoc">Tin học</button>
+      <button class="category-btn" data-category="lich-su">Lịch sử</button>
     </div>
     <div class="grid">
       <div class="card animate-on-scroll" data-category="vat-li">
-        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Vật lí">
+        <img src="https://chantroisangtao.vn/wp-content/uploads/2023/02/1-1.png">
         <div class="card-content">
           <h3>Ôn thi Vật lí</h3>
           <p>Ôn tập kiến thức Vật lí cho kỳ thi sắp tới.</p>
@@ -198,7 +189,7 @@
         </div>
       </div>
       <div class="card animate-on-scroll" data-category="hoa-hoc">
-        <img src="https://images.unsplash.com/photo-1568572933382-74d440642117?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Hoá học">
+        <img src="https://chantroisangtao.vn/wp-content/uploads/2023/02/1-3.png">
         <div class="card-content">
           <h3>Ôn thi Hoá học</h3>
           <p>Ôn tập kiến thức Hoá học và thực hành.</p>
@@ -206,7 +197,7 @@
         </div>
       </div>
       <div class="card animate-on-scroll" data-category="sinh-hoc">
-        <img src="https://images.unsplash.com/photo-1554475901-4538ddfbccc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sinh học">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz4oWSrBpLG41vnxULKmmzpR9MpcWF3a_MIA&s">
         <div class="card-content">
           <h3>Ôn thi Sinh học</h3>
           <p>Ôn tập các bài học Sinh học cho kỳ thi.</p>
@@ -214,11 +205,27 @@
         </div>
       </div>
       <div class="card animate-on-scroll" data-category="tin-hoc">
-        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Tin học">
+        <img src="https://www.vietjack.com/sach-moi/images/sach-tin-hoc-lop-11-ket-noi-tri-thuc-sua2024-1.PNG">
         <div class="card-content">
           <h3>Ôn thi Tin học</h3>
           <p>Ôn tập kiến thức Tin học và lập trình cơ bản.</p>
           <a href="https://example.com/onti/tin-hoc" target="_blank">Truy cập</a>
+        </div>
+      </div>
+      <div class="card animate-on-scroll" data-category="lich-su">
+        <img src="https://product.hstatic.net/200000343833/product/bia_shs__page_29_b256d223092c4ffe996c619adfaf2184_master.jpg" alt="Sách Giáo Khoa Lịch sử Lớp 11">
+        <div class="card-content">
+          <h3>Lịch Sử bài 5</h3>
+          <p>Trắc nghiệm và đúng sai bài 5.</p>
+          <a href="https://azota.vn/de-thi/jbxz4l" target="_blank">Truy cập</a>
+        </div>
+      </div>
+      <div class="card animate-on-scroll" data-category="lich-su">
+        <img src="https://product.hstatic.net/200000343833/product/bia_shs__page_29_b256d223092c4ffe996c619adfaf2184_master.jpg" alt="Sách Giáo Khoa Lịch sử Lớp 11">
+        <div class="card-content">
+          <h3>Lịch Sử bài 6</h3>
+          <p>Trắc nghiệm và đúng sai bài 6.</p>
+          <a href="https://azota.vn/de-thi/oyfwkf" target="_blank">Truy cập</a>
         </div>
       </div>
     </div>
