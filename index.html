@@ -11,60 +11,59 @@
       padding: 0;
       box-sizing: border-box;
     }
-    /* Body với nền gradient chuyển động */
+    /* Original Background */
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-      background-size: 200% 200%;
-      animation: gradientAnimation 15s ease infinite;
-      min-height: 100vh;
-      padding: 30px;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(9, 87, 255, 0.8)), url('https://www.transparenttextures.com/patterns/white-paper.png');
+      background-size: cover;
+      background-blend-mode: overlay;
+      color: #333;
     }
-    @keyframes gradientAnimation {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    header {
+      position: sticky;
+      top: 0;
+      background: #ffffff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      padding: 20px 0;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5em;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      font-weight: bold;
     }
     .container {
       max-width: 1200px;
       margin: 0 auto;
-    }
-    h1 {
-      text-align: center;
-      color: #2c3e50;
-      margin-bottom: 40px;
-      font-size: 2.5em;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      padding: 20px;
     }
     .categories {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 15px;
       margin-bottom: 40px;
       flex-wrap: wrap;
     }
     .category-btn {
-      padding: 12px 25px;
+      padding: 12px 20px;
       border: none;
       background: #3498db;
       color: white;
-      border-radius: 25px;
+      border-radius: 30px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: background 0.3s ease, transform 0.3s ease;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-    /* Hiệu ứng hover cho nút phân loại */
     .category-btn:hover {
-      transform: translateY(-3px);
       background: #2980b9;
-      box-shadow: 0 6px 8px rgba(0,0,0,0.2);
-    }
-    /* Khi nút phân loại được chọn: thêm viền và đổi màu nền thành xanh đậm */
-    .category-btn.active {
       transform: translateY(-3px);
+    }
+    .category-btn.active {
       background: #0d47a1;
       border: 2px solid #0d47a1;
-      box-shadow: 0 6px 8px rgba(0,0,0,0.2);
     }
     .grid {
       display: grid;
@@ -76,13 +75,13 @@
       background: white;
       border-radius: 15px;
       overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
     }
     .card:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
     .card img {
       width: 100%;
@@ -91,7 +90,7 @@
       transition: transform 0.3s ease;
     }
     .card:hover img {
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
     .card-content {
       padding: 20px;
@@ -99,52 +98,34 @@
     .card h3 {
       color: #2c3e50;
       margin-bottom: 10px;
-      font-size: 1.2em;
+      font-size: 1.5em;
+      font-weight: bold;
     }
     .card p {
       color: #7f8c8d;
-      font-size: 0.9em;
+      font-size: 0.95em;
       line-height: 1.5;
       margin-bottom: 15px;
     }
     .card a {
       display: inline-block;
-      padding: 8px 20px;
+      padding: 10px 15px;
       background: #3498db;
       color: white;
       text-decoration: none;
       border-radius: 20px;
       transition: background 0.3s ease;
+      font-weight: bold;
     }
     .card a:hover {
       background: #2980b9;
     }
-    /* Màu sắc đặc trưng cho từng môn học */
-    .card[data-category="vat-li"] img {
-      border-bottom: 3px solid #8e44ad;
-    }
-    .card[data-category="hoa-hoc"] img {
-      border-bottom: 3px solid #e74c3c;
-    }
-    .card[data-category="sinh-hoc"] img {
-      border-bottom: 3px solid #27ae60;
-    }
-    .card[data-category="tin-hoc"] img {
-      border-bottom: 3px solid #f1c40f;
-    }
-    /* Màu sắc cho môn Lịch sử */
-    .card[data-category="lich-su"] img {
-      border-bottom: 3px solid #d35400;
-    }
     @media (max-width: 768px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
       h1 {
         font-size: 2em;
       }
     }
-    /* Hiệu ứng khi mở trang và lướt web */
+    /* Animation on scroll */
     .animate-on-scroll {
       opacity: 0;
       transform: scale(0.8);
@@ -165,12 +146,13 @@
         opacity: 1;
         transform: scale(1);
       }
-    }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Trang Ôn Thi</h1>
+  </header>
   <div class="container">
-    <h1 class="animate-on-scroll">📚 Trang Ôn Thi</h1>
     <div class="categories animate-on-scroll">
       <button class="category-btn active" data-category="all">Tất cả</button>
       <button class="category-btn" data-category="vat-li">Vật lí</button>
@@ -181,7 +163,7 @@
     </div>
     <div class="grid">
       <div class="card animate-on-scroll" data-category="vat-li">
-        <img src="https://chantroisangtao.vn/wp-content/uploads/2023/02/1-1.png">
+        <img src="https://chantroisangtao.vn/wp-content/uploads/2023/02/1-1.png" alt="Ôn thi Vật lí">
         <div class="card-content">
           <h3>Ôn thi Vật lí</h3>
           <p>Ôn tập kiến thức Vật lí cho kỳ thi sắp tới.</p>
@@ -189,7 +171,7 @@
         </div>
       </div>
       <div class="card animate-on-scroll" data-category="hoa-hoc">
-        <img src="https://chantroisangtao.vn/wp-content/uploads/2023/02/1-3.png">
+        <img src="https://chantroisangtao.vn/wp-content/uploads/2023/02/1-3.png" alt="Ôn thi Hoá học">
         <div class="card-content">
           <h3>Ôn thi Hoá học</h3>
           <p>Ôn tập kiến thức Hoá học và thực hành.</p>
@@ -197,7 +179,7 @@
         </div>
       </div>
       <div class="card animate-on-scroll" data-category="sinh-hoc">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz4oWSrBpLG41vnxULKmmzpR9MpcWF3a_MIA&s">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz4oWSrBpLG41vnxULKmmzpR9MpcWF3a_MIA&s" alt="Ôn thi Sinh học">
         <div class="card-content">
           <h3>Ôn thi Sinh học</h3>
           <p>Ôn tập các bài học Sinh học cho kỳ thi.</p>
@@ -205,7 +187,7 @@
         </div>
       </div>
       <div class="card animate-on-scroll" data-category="tin-hoc">
-        <img src="https://www.vietjack.com/sach-moi/images/sach-tin-hoc-lop-11-ket-noi-tri-thuc-sua2024-1.PNG">
+        <img src="https://www.vietjack.com/sach-moi/images/sach-tin-hoc-lop-11-ket-noi-tri-thuc-sua2024-1.PNG" alt="Ôn thi Tin học">
         <div class="card-content">
           <h3>Ôn thi Tin học</h3>
           <p>Ôn tập kiến thức Tin học và lập trình cơ bản.</p>
@@ -258,6 +240,16 @@
       
       document.querySelectorAll('.animate-on-scroll').forEach(el => {
         observer.observe(el);
+      });
+    });
+
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
       });
     });
   </script>
