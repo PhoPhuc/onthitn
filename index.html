@@ -27,6 +27,11 @@
       z-index: 1000;
       padding: 20px 0;
       text-align: center;
+      transition: opacity 0.3s ease;
+    }
+    header.hidden {
+      opacity: 0; /* Hide the header */
+      pointer-events: none; /* Prevent interaction */
     }
     h1 {
       font-size: 2.5em;
@@ -149,7 +154,7 @@
   </style>
 </head>
 <body>
-  <header>
+  <header id="header">
     <h1>Trang Ôn Thi</h1>
   </header>
   <div class="container">
@@ -214,6 +219,20 @@
   </div>
   
   <script>
+    // Hide header on scroll
+    const header = document.getElementById('header');
+    let lastScrollTop = 0;
+
+    window.addEventListener('scroll', function() {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > lastScrollTop) {
+        header.classList.add('hidden'); // Add hidden class when scrolling down
+      } else {
+        header.classList.remove('hidden'); // Remove hidden class when scrolling up
+      }
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+    });
+
     // Lọc card theo danh mục
     const filterButtons = document.querySelectorAll('.category-btn');
     const cards = document.querySelectorAll('.card');
