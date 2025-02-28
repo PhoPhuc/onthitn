@@ -1,0 +1,40 @@
+/* Reset và cấu hình cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(108deg, rgba(9,87,255,1) 0%, rgba(255,255,255,1) 32%, rgba(120,233,250,1) 48%, rgba(157,255,91,1) 78%, rgba(255,246,246,1) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  /* Hiệu ứng glassmorphism cho container */
+  .glass-container {
+    background: rgba(255, 255, 255, 0.15); /* Nền bán trong suốt */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Đường viền mờ */
+    border-radius: 15px;
+    backdrop-filter: blur(10px); /* Hiệu ứng làm mờ phía sau */
+    padding: 40px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Ví dụ style cho nội dung bên trong glass-container */
+  .glass-container h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .glass-container p {
+    color: #2c3e50;
+    text-align: center;
+    line-height: 1.6;
+  }
+  
