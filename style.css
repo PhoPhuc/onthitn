@@ -1,21 +1,67 @@
 <style>
-  /* Các CSS khác... */
+  /* Reset CSS và các CSS khác... */
+
+  /* Animation mượt hơn với will-change và cubic-bezier */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: scale(0.8);
+    will-change: opacity, transform; /* Tối ưu hóa hiệu suất */
+  }
+
+  .animate-on-scroll.animate {
+    animation: popIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; /* Hiệu ứng mượt hơn */
+  }
+
+  @keyframes popIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    60% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Hiệu ứng hover mượt hơn cho card */
+  .card {
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .card img {
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .card:hover img {
+    transform: scale(1.05);
+  }
 
   /* Viền cho các thẻ .card */
   .card a {
-  display: inline-block;
-  padding: 10px 15px;
-  background: transparent; /* Màu nền trong suốt */
-  color: black; /* Màu chữ đen */
-  text-decoration: none;
-  border-radius: 20px;
-  border: 2px solid black; /* Viền đen cho nút "Truy cập" */
-  transition: background 0.3s ease; /* Thêm hiệu ứng chuyển tiếp */
+    display: inline-block;
+    padding: 10px 15px;
+    background: transparent; /* Màu nền trong suốt */
+    color: black; /* Màu chữ đen */
+    text-decoration: none;
+    border-radius: 20px;
+    border: 2px solid black; /* Viền đen cho nút "Truy cập" */
+    transition: background 0.3s ease, color 0.3s ease; /* Thêm hiệu ứng chuyển tiếp */
   }
+
   .card a:hover {
-  background: transparent; /* Giữ màu nền trong suốt khi hover */
-  border: 2px solid black; /* Giữ viền đen khi hover */
+    background: black; /* Màu nền đen khi hover */
+    color: white; /* Màu chữ trắng khi hover */
   }
+
   .card[data-category="vat-li"] {
     border: 2px solid red; /* Viền đỏ cho Vật lí */
   }
@@ -39,26 +85,38 @@
   /* Viền và màu nền cho các nút bấm */
   .category-btn[data-category="vat-li"] {
     border: 2px solid red; /* Viền đỏ cho Vật lí */
-    background: red; /* Không có màu nền cho Vật lí */
+    background: red; /* Màu nền đỏ cho Vật lí */
+    color: white; /* Màu chữ trắng cho Vật lí */
   }
 
   .category-btn[data-category="hoa-hoc"] {
     border: 2px solid purple; /* Viền tím cho Hoá học */
     background: purple; /* Màu nền tím cho Hoá học */
+    color: white; /* Màu chữ trắng cho Hoá học */
   }
 
   .category-btn[data-category="sinh-hoc"] {
     border: 2px solid blue; /* Viền xanh dương cho Sinh học */
     background: blue; /* Màu nền xanh dương cho Sinh học */
+    color: white; /* Màu chữ trắng cho Sinh học */
   }
 
   .category-btn[data-category="tin-hoc"] {
     border: 2px solid yellow; /* Viền vàng cho Tin học */
     background: yellow; /* Màu nền vàng cho Tin học */
+    color: black; /* Màu chữ đen cho Tin học */
   }
 
   .category-btn[data-category="lich-su"] {
     border: 2px solid orange; /* Viền cam cho Lịch sử */
     background: orange; /* Màu nền cam cho Lịch sử */
+    color: white; /* Màu chữ trắng cho Lịch sử */
+  }
+
+  /* Hiệu ứng hover cho các nút bấm */
+  .category-btn:hover {
+    opacity: 0.8; /* Giảm độ trong suốt khi hover */
+    transform: translateY(-2px); /* Di chuyển nút lên trên một chút */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Thêm hiệu ứng chuyển tiếp */
   }
 </style>
